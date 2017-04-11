@@ -8,9 +8,9 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
+        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
     );
 
@@ -30,6 +30,7 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
             'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Intl\\' => 23,
+            'Symfony\\Component\\Inflector\\' => 28,
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\Form\\' => 23,
@@ -43,16 +44,27 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Component\\ClassLoader\\' => 30,
+            'Symfony\\Component\\Cache\\' => 24,
             'Symfony\\Component\\BrowserKit\\' => 29,
             'Symfony\\Component\\Asset\\' => 24,
             'Symfony\\Bundle\\WebProfilerBundle\\' => 33,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Symfony\\Bridge\\Monolog\\' => 23,
+            'Silex\\Provider\\' => 15,
             'Silex\\' => 6,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+            'Psr\\Cache\\' => 10,
         ),
         'M' => 
         array (
             'Monolog\\' => 8,
+        ),
+        'J' => 
+        array (
+            'JPush\\' => 6,
         ),
         'D' => 
         array (
@@ -114,6 +126,10 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         array (
             0 => __DIR__ . '/..' . '/symfony/intl',
         ),
+        'Symfony\\Component\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/inflector',
+        ),
         'Symfony\\Component\\HttpKernel\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-kernel',
@@ -166,6 +182,10 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         array (
             0 => __DIR__ . '/..' . '/symfony/class-loader',
         ),
+        'Symfony\\Component\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/cache',
+        ),
         'Symfony\\Component\\BrowserKit\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
@@ -186,13 +206,29 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         array (
             0 => __DIR__ . '/..' . '/symfony/monolog-bridge',
         ),
+        'Silex\\Provider\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/silex/web-profiler',
+        ),
         'Silex\\' => 
         array (
             0 => __DIR__ . '/..' . '/silex/silex/src/Silex',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'JPush\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jpush/jpush/src/JPush',
         ),
         'Doctrine\\Common\\Cache\\' => 
         array (
@@ -212,19 +248,8 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
             ),
         ),
-        'S' => 
-        array (
-            'Silex\\Provider\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/silex/web-profiler',
-            ),
-        ),
         'P' => 
         array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
             'Pimple' => 
             array (
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
@@ -262,10 +287,14 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'IntlDateFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',
+        'JsonUserPersister' => __DIR__ . '/../..' . '/src/controller/DI_demo.php',
+        'LcpApplication' => __DIR__ . '/../..' . '/src/controller/LcpApplication.php',
         'Lcp\\BlogControllerProvider' => __DIR__ . '/../..' . '/src/controller/Lcp/BlogControllerProvider.php',
         'Lcp\\Foo' => __DIR__ . '/../..' . '/src/controller/Lcp/Foo.php',
+        'Lcp\\LcpHelloServiceProvider' => __DIR__ . '/../..' . '/src/Provider/LcpHelloServiceProvider.php',
         'Lcp\\PostControllerProvider' => __DIR__ . '/../..' . '/src/controller/Lcp/PostControllerProvider.php',
         'Lcp\\UserControllerProvider' => __DIR__ . '/../..' . '/src/controller/Lcp/UserControllerProvider.php',
+        'Lcp\\helloControllerProvider' => __DIR__ . '/../..' . '/src/controller/Lcp/HelloControllerProvider.php',
         'Locale' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Locale.php',
         'NumberFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/NumberFormatter.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
