@@ -13,6 +13,8 @@ use Silex\Provider\SerializerServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\TranslationServiceProvider;
+use Silex\Provider\FormServiceProvider;
+use Silex\Provider\LocaleServiceProvider;
 // use KPhoen\Provider\NegotiationServiceProvider;
 // use Lcp\BlogControllerProvider;
 
@@ -27,17 +29,20 @@ $app->register(new HttpFragmentServiceProvider());
 $app->register(new SerializerServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new ValidatorServiceProvider());
+$app->register(new LocaleServiceProvider());
 $app->register(new TranslationServiceProvider());
+$app->register(new FormServiceProvider());
 $app->extend('translator.resources', function ($resource, $app){
-    $resource = array_merge($resource, array(
-        array()
-    ));
+//     $resource = array_merge($resource, array(
+//         array()
+//     ));
     return $resource;
 });
 // $app->register(new NegotiationServiceProvider(array(
 //     'gpx' => array('application/gpx+xml'),
 //     'kml' => array('application/vnd.google-earth.kml+xml', 'application/vnd.google-earth.kmz'),
 // )));
+$app['locale'] = 'zh_CN';
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
 

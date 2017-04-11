@@ -15,13 +15,14 @@ include 'organizing.php';
 
 $app->get('/', function () use($app)
 {
-    $name = 'Silex Blog';
+    $name = 'jpush silex';
     return $app['twig']->render('home/hello.html.twig', array(
         'name' => $name
     ));
 })
     ->bind('homepage');
 $app->mount('/blog', include 'blog.php');
+$app->mount('/push', include 'jpush.php');
 // other methods
 $app->put('/blog/{id}', function ($id)
 {
@@ -263,6 +264,6 @@ $app->get('/name.json', function(Application $app){
     return $app->json(array('json' => $name));
 });
 // disabling CSRF protection on a form
-$form = $app['form_factory']->createBulider('form', null, array(
-    'csrf_protection' => false
-));
+// $form = $app['form.factory']->createBuilder('form', null, array(
+//     'csrf_protection' => false
+// ));
