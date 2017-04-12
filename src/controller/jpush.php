@@ -18,7 +18,7 @@ $controller = $app['controllers_factory'];
 $controller->get('/', function(){
     return 'jpush home page';
 });
-$controller->get('/go', function(Request $request){
+$controller->post('/go', function(Request $request){
     $type = $request->get('type', null);
     $registrationId = $request->get('registration_id', null);
     $userId = $request->get('user_id', null);
