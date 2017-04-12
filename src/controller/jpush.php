@@ -9,6 +9,8 @@
  * @copyright: http://lcpeng.cn
  */
 use Symfony\Component\HttpFoundation\Request;
+use JPush\Client;
+use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * @var $controller \Silex\ControllerCollection
  */
@@ -18,15 +20,32 @@ $controller->get('/', function(){
 });
 $controller->get('/go', function(Request $request){
     $type = $request->get('type', null);
-    $appid = $request->get('appid', null);
+    $registrationId = $request->get('$registration_id', null);
+    if (!in_array($type, ['all', 'android', 'ios', 'winphone'])) 
+        return new JsonResponse(['type error']);
     if('ios' == $type){
         $config = [
-            
+            'appKey' => '',
+            'masterSecret' => ''
         ];
     }else{
         $config = [
-        
+            'appKey' => '',
+            'masterSecret' => ''
         ];
+    }
+    // jpush sdk
+    $client = new Client($config['appKey'], $config['masterSecret']);
+    $pusher = $client->push();
+    $pusher->setPlatform('all'); // 'all', 'android', 'ios', 'winphone'
+    //$pusher->addAllAudience();
+    $pusher->addRegistrationId($registrationId);
+    $pusher->setNotificationAlert('Hello, JPush');
+    try {
+        $pusher->send();
+    } catch (\JPush\Exceptions\JPushException $e) {
+        // try something else here
+        file_put_contents('weixin.log', '[' . date('Y-m-d H:i:s') . ']' . json_encode($e) . "\r\n", FILE_APPEND);
     }
 });
 return $controller;
