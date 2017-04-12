@@ -55,7 +55,7 @@ $controller->post('/go', function(Request $request){
             // 'time_to_live' => 1,
             // apns_production: 表示APNs是否生产环境，
             // True 表示推送生产环境，False 表示要推送开发环境；如果不指定则默认为推送开发环境
-            'apns_production' => true,
+            'apns_production' => false,
             // big_push_duration: 表示定速推送时长(分钟)，又名缓慢推送，把原本尽可能快的推送速度，降低下来，
             // 给定的 n 分钟内，均匀地向这次推送的目标用户推送。最大值为1400.未设置则不是定速推送
             // 这里设置为 1 仅作为示例
