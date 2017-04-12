@@ -25,13 +25,13 @@ $controller->get('/go', function(Request $request){
         return new JsonResponse(['type error']);
     if('ios' == $type){
         $config = [
-            'appKey' => '',
-            'masterSecret' => ''
+            'appKey' => 'fde3f09baef4b9001c32b290',
+            'masterSecret' => 'fdf0c1121d752c05dd7667ce'
         ];
     }else{
         $config = [
-            'appKey' => '',
-            'masterSecret' => ''
+            'appKey' => '0f2e2989f659e3a6d84b68a9',
+            'masterSecret' => 'e4052cfa599fc7b21db681e9'
         ];
     }
     // jpush sdk
@@ -45,7 +45,7 @@ $controller->get('/go', function(Request $request){
         $pusher->send();
     } catch (\JPush\Exceptions\JPushException $e) {
         // try something else here
-        file_put_contents('weixin.log', '[' . date('Y-m-d H:i:s') . ']' . json_encode($e) . "\r\n", FILE_APPEND);
+        file_put_contents('push.log', '[' . date('Y-m-d H:i:s') . ']' . json_encode($e) . "\r\n", FILE_APPEND);
     }
 });
 return $controller;
