@@ -20,7 +20,8 @@ $controller->get('/', function(){
 });
 $controller->get('/go', function(Request $request){
     $type = $request->get('type', null);
-    $registrationId = $request->get('$registration_id', null);
+    $registrationId = $request->get('registration_id', null);
+    $userId = $request->get('user_id', null);
     if (!in_array($type, ['all', 'android', 'ios', 'winphone'])) 
         return new JsonResponse(['type error']);
     if('ios' == $type){
@@ -40,7 +41,7 @@ $controller->get('/go', function(Request $request){
     $pusher->setPlatform('all'); // 'all', 'android', 'ios', 'winphone'
     //$pusher->addAllAudience();
     $pusher->addRegistrationId($registrationId);
-    $pusher->setNotificationAlert('Hello, JPush');
+    $pusher->setNotificationAlert('Hello, JPush, user_id:' . $userId);
     try {
         $pusher->send();
     } catch (\JPush\Exceptions\JPushException $e) {
