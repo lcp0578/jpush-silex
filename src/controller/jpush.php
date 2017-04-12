@@ -43,11 +43,11 @@ $controller->post('/go', function(Request $request){
     $pusher->addRegistrationId($registrationId);
     $pusher->setNotificationAlert('Hello, JPush, user_id:' . $userId);
     try {
-        return $pusher->send();
+        return new JsonResponse($pusher->send());
     } catch (\JPush\Exceptions\JPushException $e) {
         // try something else here
         file_put_contents('push.log', '[' . date('Y-m-d H:i:s') . ']' . json_encode($e) . "\r\n", FILE_APPEND);
-        return $e;
+        return new JsonResponse($e);
     }
 });
 return $controller;
