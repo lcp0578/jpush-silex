@@ -15,6 +15,7 @@ use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\LocaleServiceProvider;
+use Knp\Provider\ConsoleServiceProvider;
 // use KPhoen\Provider\NegotiationServiceProvider;
 // use Lcp\BlogControllerProvider;
 
@@ -32,6 +33,11 @@ $app->register(new ValidatorServiceProvider());
 $app->register(new LocaleServiceProvider());
 $app->register(new TranslationServiceProvider());
 $app->register(new FormServiceProvider());
+$app->register(new ConsoleServiceProvider(), array(
+    'console.name'              => 'MyApplication',
+    'console.version'           => '1.0.0',
+    'console.project_directory' => __DIR__.'/..'
+));
 $app->extend('translator.resources', function ($resource, $app){
 //     $resource = array_merge($resource, array(
 //         array()
