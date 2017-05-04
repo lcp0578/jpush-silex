@@ -5,10 +5,10 @@ set_time_limit(0);
 
 $app = require_once __DIR__.'/../app/bootstrap.php';
 
-use Command\MyCommand;
+use Command\HelloCommand;
 
 $application = $app['console'];
-$application->add(new MyCommand());
+$application->add(new HelloCommand());
 $application->run();
 
 ?>
