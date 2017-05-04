@@ -8,6 +8,7 @@ $app = require_once __DIR__.'/../app/bootstrap.php';
 $application = $app['console'];
 $application->add(new Command\HelloCommand());
 $application->add(new Command\TestCommand());
+$application->add(new Command\PushCommand());
 $application->run();
 
 ?>

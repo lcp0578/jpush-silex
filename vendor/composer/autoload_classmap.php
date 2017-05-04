@@ -10,6 +10,7 @@ return array(
     'AssertionError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
     'Collator' => $vendorDir . '/symfony/intl/Resources/stubs/Collator.php',
     'Command\\HelloCommand' => $baseDir . '/src/Command/HelloCommand.php',
+    'Command\\PushCommand' => $baseDir . '/src/Command/PushCommand.php',
     'Command\\TestCommand' => $baseDir . '/src/Command/TestCommand.php',
     'DivisionByZeroError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
     'Error' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/Error.php',
