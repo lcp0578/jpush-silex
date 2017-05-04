@@ -255,6 +255,13 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
             ),
         ),
+        'K' => 
+        array (
+            'Knp\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/console-service-provider',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\DBAL\\' => 
@@ -284,6 +291,7 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Collator' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Collator.php',
+        'Command\\MyCommand' => __DIR__ . '/../..' . '/src/Command/MyCommand.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'IntlDateFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',

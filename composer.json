@@ -26,7 +26,8 @@
     "autoload": {
         "classmap": [
             "src/controller",
-            "src/Provider"
+            "src/Provider",
+            "src/Command"
         ]
     }
 }

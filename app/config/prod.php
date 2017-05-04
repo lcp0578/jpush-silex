@@ -93,12 +93,12 @@ $app['session.storage.hander'] = function() use ($app){
  * If a controller setting must be applied to all controllers 
  * (a converter, a middleware, a requirement, or adefault value)
  */
-$app['controllers'] 
-->value('id', 1)
-->assert('id', '\d+')
-//->requireHttps()
-->method('GET')
-->convert('id', function ($id){
-    return $id * 10;
-})
-->before(function(){});
+// $app['controllers'] 
+// ->value('id', 1)
+// ->assert('id', '\d+')
+// //->requireHttps()
+// ->method('GET')
+// ->convert('id', function ($id){
+//     return $id * 10;
+// })
+// ->before(function(){});
