@@ -28,7 +28,7 @@ $app['assets.named_packages'] = [
 //[Doctrine DBAL]
 $app['db.options'] = [
     'driver' => 'pdo_mysql',
-    'dbname' => 'silex_demo',
+    'dbname' => 'chengshi',
     'host' => 'localhost',
     'port' => 3306,
     'user' => 'root',

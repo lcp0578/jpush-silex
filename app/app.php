@@ -38,6 +38,7 @@ $app->register(new ConsoleServiceProvider(), array(
     'console.version'           => '1.0.0',
     'console.project_directory' => __DIR__.'/..'
 ));
+$app->register(new ServiceControllerServiceProvider());
 $app->extend('translator.resources', function ($resource, $app){
 //     $resource = array_merge($resource, array(
 //         array()
