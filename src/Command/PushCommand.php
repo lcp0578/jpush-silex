@@ -34,7 +34,7 @@ class PushCommand extends \Knp\Command\Command
         $connect = $app['db'];
         $result = $connect->fetchAll("SELECT jp.type, jp.registration_id,me.itemid, me.title FROM cheng_jpush jp join cheng_message me ON me.touser = jp.username WHERE me.push = 0 ORDER BY jp.id DESC");
         //$count = $connect->executeQuery('SELECT count(*) count FROM cheng_jpush')->fetch();
-        $output->writeln([$count['count']]);
+        //$output->writeln([$count['count']]);
         file_put_contents('debug.log', json_encode($result) . "\r\n", FILE_APPEND);
         foreach ($result as $r) {
             $output->writeln([$r['registration_id']]);
