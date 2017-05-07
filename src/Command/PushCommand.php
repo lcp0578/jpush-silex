@@ -32,15 +32,22 @@ class PushCommand extends \Knp\Command\Command
          * @var $connect \Doctrine\DBAL\Connection
          */
         $connect = $app['db'];
-        $result = $connect->fetchAll("SELECT userid, registration_id FROM cheng_jpush ORDER BY id DESC");
-        $count = $connect->executeQuery('SELECT count(*) count FROM cheng_jpush')->fetch();
+        $result = $connect->fetchAll("SELECT jp.type, jp.registration_id,me.itemid, me.title FROM cheng_jpush jp join cheng_message me ON me.touser = jp.username WHERE me.push = 0 ORDER BY jp.id DESC");
+        //$count = $connect->executeQuery('SELECT count(*) count FROM cheng_jpush')->fetch();
         $output->writeln([$count['count']]);
         file_put_contents('debug.log', json_encode($result) . "\r\n", FILE_APPEND);
         foreach ($result as $r) {
             $output->writeln([$r['registration_id']]);
-            $response = $this->push($r['registration_id'], 'android');
-            file_put_contents('response_debug.log', json_encode($response) . "\r\n", FILE_APPEND);
-            $response = $this->push($r['registration_id'], 'ios');
+            $output->writeln([$r['type'], $r['itemid']]);
+            $response = $this->push($r['registration_id'], $r['type'], $r['title'],$r['itemid']);
+            if(!empty($response)){
+                $result = $connect->update('cheng_message', [
+                    'push' => 1
+                ], [
+                    'itemid' => $r['itemid']
+                ]);
+                file_put_contents('update_debug.log', json_encode($result) . "\r\n", FILE_APPEND);
+            }
             file_put_contents('response_debug.log', json_encode($response) . "\r\n", FILE_APPEND);
         }
 //         $output->writeln($dbal);
@@ -63,17 +70,17 @@ class PushCommand extends \Knp\Command\Command
      * call jpush
      * @return \Command\JsonResponse
      */
-    private function push($registrationId, $type = '')
+    private function push($registrationId, $type, $title, $itemid)
     {
         if('ios' == $type){
             $config = [
-                'appKey' => '',
-                'masterSecret' => ''
+                'appKey' => 'fde3f09baef4b9001c32b290',
+                'masterSecret' => 'fdf0c1121d752c05dd7667ce'
             ];
         }else{
             $config = [
-                'appKey' => '',
-                'masterSecret' => ''
+                'appKey' => '0f2e2989f659e3a6d84b68a9',
+                'masterSecret' => 'e4052cfa599fc7b21db681e9'
             ];
         }
         // jpush sdk
@@ -83,13 +90,22 @@ class PushCommand extends \Knp\Command\Command
         //$pusher->addAllAudience();
         $pusher->addRegistrationId($registrationId);
         if('ios' == $type){
-            $pusher->setNotificationAlert('Hello, JPush, silex test');
+            $pusher->iosNotification($title, [
+                'extras' => [
+                    'pushType' => '1',
+                    'data' => "https://chengshi.91zhangyu.com/mobile/message.php?action=show&itemid=" . $itemid,
+                    'notifyTitle' => $title,
+                    'notifySubTitle' => '查看详情'
+                ]
+            ]);
         }else{
-            $pusher->setNotificationAlert('Hello, JPush, silex test');
-//             $pusher->setMessage("conetnt", 'title', '1',[
-//                 'pushType' => '1',
-//                 'data' => 'www.baidu.com'
-//         ]);
+            $pusher->androidNotification($title, [
+                'extras' => [
+                    'pushType' => '1',
+                    'data' => "https://chengshi.91zhangyu.com/mobile/message.php?action=show&itemid=" . $itemid,
+                ]
+            ]);
+            
         }
         try {
             $pusher->options(array(
@@ -104,15 +120,11 @@ class PushCommand extends \Knp\Command\Command
                 // 'time_to_live' => 1,
                 // apns_production: 表示APNs是否生产环境，
                 // True 表示推送生产环境，False 表示要推送开发环境；如果不指定则默认为推送开发环境
-                'apns_production' => false,
+                'apns_production' => true,
                 // big_push_duration: 表示定速推送时长(分钟)，又名缓慢推送，把原本尽可能快的推送速度，降低下来，
                 // 给定的 n 分钟内，均匀地向这次推送的目标用户推送。最大值为1400.未设置则不是定速推送
                 // 这里设置为 1 仅作为示例
                 // 'big_push_duration' => 1
-                'extras' => [
-                    'pushType' => '1',
-                    'data' => 'www.baidu.com'
-                ]
             ));
             return $pusher->send();
         } catch (\JPush\Exceptions\JPushException $e) {
